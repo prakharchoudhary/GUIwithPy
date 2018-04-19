@@ -138,7 +138,7 @@ line_number_bar = Text(root, width=4, padx=3, takefocus=0,  border=0,
 line_number_bar.pack(side='left',  fill='y')
 
 # add text widget and scrollbar widget
-content_text = Text(root, wrap='word')
+content_text = Text(root, wrap='word', undo=1)
 content_text.pack(expand='yes', fill='both')
 scroll_bar = Scrollbar(content_text)
 content_text.configure(yscrollcommand=scroll_bar.set)
