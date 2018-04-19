@@ -8,6 +8,10 @@ PROGRAM_NAME = "Text Editor"
 
 # Adding Text Widget Built-in Functionality
 
+def select_all(event=None):
+	content_text.tag_add('sel', '1.0', 'end')
+	return "break"
+
 def cut():
     content_text.event_generate("<<Cut>>")
     return "break"
@@ -81,7 +85,7 @@ edit_menu.add_command(label='Paste', accelerator='Ctrl+V',
 edit_menu.add_separator()
 edit_menu.add_command(label='Find', underline=0, accelerator='Ctrl+F')
 edit_menu.add_separator()
-edit_menu.add_command(label='Select All', underline=7, accelerator='Ctrl+A')
+edit_menu.add_command(label='Select All', underline=7, accelerator='Ctrl+A', command=select_all)
 menu_bar.add_cascade(label='Edit', menu=edit_menu)
 
 # end of edit menu
@@ -148,6 +152,10 @@ scroll_bar.pack(side='right', fill='y')
 # handling redo quirk
 content_text.bind('<Control-y>', redo)
 content_text.bind('<Control-Y>', redo)
+
+# handling select all quirk
+content_text.bind('<Control-A>', select_all)
+content_text.bind('<Control-a>', select_all)
 
 ##############################
 root.mainloop()
